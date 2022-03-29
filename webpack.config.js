@@ -9,7 +9,7 @@ module.exports = {
   entry: "./src/index.js",
   //결과물(번들)을 반환하는 설정
   output: {
-    // path: path.resolve(__dirname, "public"),
+    path: path.resolve(__dirname, "/dist"),
     // path.resolve(1,2) 1번째 인수와 2번쨰 인수의 경로를 합쳐주는 역활을 함
     //__dirname 은 현재 파일이 있는 경로를 지칭한다
     // 이 두 부분을 합쳐서 절대적인 경로를 output에 path에 제공을 할 수 있다.
@@ -32,6 +32,7 @@ module.exports = {
           loader: "babel-loader",
           options: {
             presets: ["@babel/preset-env", "@babel/preset-react"],
+            plugins: ["@babel/transform-runtime"],
           },
         },
       },
@@ -45,6 +46,10 @@ module.exports = {
             },
           },
         ],
+      },
+      {
+        test: /\.svg$/,
+        loader: "file-loader",
       },
     ],
   },
